@@ -6,7 +6,14 @@ def equilateral(sides):
 
 
 def isosceles(sides):
-    pass
+    sides = sorted(sides)
+    if 0 in set(sides):
+        return False
+    elif sides[0] + sides[1] == sides[2]:
+        return False
+    elif len(set(sides)) <= 2:
+        return True
+
 
 
 def scalene(sides):
