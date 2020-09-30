@@ -9,15 +9,25 @@ def isosceles(sides):
     sides = sorted(sides)
     if 0 in set(sides):
         return False
-    elif sides[0] + sides[1] == sides[2]:
+    elif sides[0] + sides[1] <= sides[2]:
         return False
     elif len(set(sides)) <= 2:
         return True
+    else:
+        return False
 
 
 
 def scalene(sides):
-    pass
+    sides = sorted(sides)
+    if sides[0] + sides[1] <= sides[2]:
+        return False
+    elif not sides[0] == sides[1] == sides[2]:
+        return True
+    elif len(set(sides)) > 0:
+        return False
+
+
 
 if __name__ == '__main__':
     print(equilateral([2, 2, 2]))
