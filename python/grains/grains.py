@@ -10,4 +10,11 @@ def square(number):
 
 
 def total():
-    pass
+    total: int = 1
+    temp = 1
+    grains = 1
+    for i in range(2, 64 + 1):
+        grains = temp * 2
+        temp = grains
+        total += temp
+    return total
