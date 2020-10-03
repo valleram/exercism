@@ -1,15 +1,16 @@
 class Allergies:
-    values = [1, 2, 4, 8, 16, 32, 64, 128]
+    values = [128, 64, 32, 16, 8, 4, 2, 1]
     allergies = {
-        "eggs": 1,
-        "peanuts": 2,
-        "shellfish": 4,
-        "strawberries": 8,
-        "tomatoes": 16,
-        "chocolate": 32,
-        "pollen": 64,
-        "cats": 128,
+        1: "eggs",
+        2: "peanuts",
+        4: "shellfish",
+        8: "strawberries",
+        16: "tomatoes",
+        32: "chocolate",
+        64: "pollen",
+        128: "cats",
     }
+
     def __init__(self, score):
         self.score = score
 
@@ -24,8 +25,25 @@ class Allergies:
                 elif self.score > Allergies.values[i]:
                     self.score = self.score - Allergies.values[i]
                     newl.append(Allergies.values[i])
-            print(newl)
+            allergilist = [Allergies.allergies[j] for j in newl if j in Allergies.allergies.keys()]
+            if item in allergilist:
+                return True
+            else:
+                return False
+        else:
+            return False
 
     @property
     def lst(self):
-        pass
+        newl = []
+        while self.score > 0:
+            for i in range(len(Allergies.values)):
+                if self.score in Allergies.values:
+                    newl.append(self.score)
+                    self.score = 0
+                    break
+                elif self.score > Allergies.values[i]:
+                    self.score = self.score - Allergies.values[i]
+                    newl.append(Allergies.values[i])
+            allergy = [Allergies.allergies[j] for j in newl if j in Allergies.allergies.keys()]
+        return allergy
