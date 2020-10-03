@@ -15,27 +15,15 @@ class Allergies:
         self.score = score
 
     def allergic_to(self, item):
-        newl = []
-        while self.score > 0:
-            for i in range(len(Allergies.values)):
-                if self.score in Allergies.values:
-                    newl.append(self.score)
-                    self.score = 0
-                    break
-                elif self.score > Allergies.values[i]:
-                    self.score = self.score - Allergies.values[i]
-                    newl.append(Allergies.values[i])
-            allergilist = [Allergies.allergies[j] for j in newl if j in Allergies.allergies.keys()]
-            if item in allergilist:
-                return True
-            else:
-                return False
+        if item in self.lst:
+            return True
         else:
             return False
 
     @property
     def lst(self):
         newl = []
+        allergy =[]
         while self.score > 0:
             for i in range(len(Allergies.values)):
                 if self.score in Allergies.values:
