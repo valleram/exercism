@@ -1,3 +1,5 @@
+import math
+
 
 class ComplexNumber:
     def __init__(self, real, imaginary):
@@ -11,19 +13,21 @@ class ComplexNumber:
         return ComplexNumber(self.real + other.real, self.imaginary + other.imaginary)
 
     def __mul__(self, other):
-        return ComplexNumber(self.real * other.real, self.imaginary * other.imaginary)
+        return ComplexNumber(self.real * other.real - self.imaginary * other.imaginary, self.imaginary * other.real + self.real * other.imaginary)
 
     def __sub__(self, other):
         return ComplexNumber(self.real - other.real, self.imaginary - other.imaginary)
 
     def __truediv__(self, other):
-        #return ComplexNumber((self.real + self.imaginary / other.real + other.imaginary) * (other.real + (other.imaginary * -1) / other.real + (other.imaginary * -1)))
-        pass
+        return ComplexNumber(
+            (self.real * other.real + self.imaginary * other.imaginary) / (other.real ** 2 + other.imaginary ** 2),
+            (self.imaginary * other.real - self.real * other.imaginary) / (other.real ** 2 + other.imaginary ** 2))
+
     def __abs__(self):
-        pass
+        return math.sqrt(self.real**2 + self.imaginary**2)
 
     def conjugate(self):
         return ComplexNumber(self.real, self.imaginary * -1)
 
     def exp(self):
-        pass
+        return ComplexNumber(math.e**self.real * math.cos(self.imaginary), math.e**self.real * math.sin(self.imaginary))
