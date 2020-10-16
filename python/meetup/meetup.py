@@ -3,14 +3,11 @@ from datetime import date
 
 
 class MeetupDayException(Exception):
-    def __init__(self, value):
-        self.value = value
-
-    def __str__(self):
-        return repr(self.value)
+    pass
 
 
 def meetup(year, month, week, day_of_week):
+    dl = []
     weekdays = {'Monday': 1, 'Tuesday': 2, 'Wednesday': 3, 'Thursday': 4, 'Friday': 5, 'Saturday': 6, 'Sunday': 7}
     cal = Calendar()
 
@@ -28,3 +25,12 @@ def meetup(year, month, week, day_of_week):
                 return date(i.year, i.month, i.day)
         elif week == '4th' and 22 <= i.day <= 28 and i.isoweekday() == weekdays[day_of_week]:
             return date(i.year, i.month, i.day)
+        elif week == '5th' and i.day >= 29 and i.isoweekday() == weekdays[day_of_week]:
+            return date(i.year, i.month, i.day)
+        elif week == 'last' and 22 <= i.day <= 31 and i.isoweekday() == weekdays[day_of_week]:
+            dl.append(i)
+    if len(dl) > 1:
+        print(dl[-1])
+    else:
+        print(dl[0])
+
