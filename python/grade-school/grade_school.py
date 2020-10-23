@@ -3,7 +3,11 @@ class School:
         self.students = {}
 
     def add_student(self, name, grade):
-        if not grade in self.students:
+        """
+        :param name: string
+        :type grade: int
+        """
+        if grade not in self.students:
             self.students[grade] = [name]
         else:
             self.students[grade].append(name)
